@@ -31,19 +31,29 @@ The dataset includes storefront inventory data for 2022 and 2023 from the City o
    - Use the "Year recorded" parameter to gather historical storefront data for comparison and analysis.
    - Identify patterns in the dataset by analyzing the yearly changes in the number of storefronts and business categories.
 
-2. **Data Storage Design**
    ![Data Storage Design](images/2.png)
+2. **Data Storage Design**
+
    - Use AWS S3 to design a structured storage system:
      - Created a bucket called "Finance and Economy" with subfolders "2022" and "2023" for easy data handling.
      - Each subfolder was divided into "Landing," "Raw," and "Curated" stages to organize the data by processing phase.
+       
+![](images/3.png)
+![](images/4.png)
 
 3. **Dataset Preparation**
    - Reduce the dataset to 188 entries for each year (2022 and 2023) to focus on the most relevant data.
    - Ensure that the dataset is ready for further analysis by filtering out unnecessary records and columns.
 
+![](images/5.png)
+![](images/6.png)
+
 4. **Data Ingestion & Storage**
    - Upload CSV files for the years 2022 and 2023 into their respective "Landing" folders in AWS S3.
    - Organize the data files by year and processing stage to maintain clarity and streamline future data processing.
+
+![](images/7.png)
+![](images/8.png)
 
 5. **Data Cleaning & Structuring**
    - Use AWS DataBrew to inspect and clean the data for 2022 and 2023:
@@ -51,6 +61,9 @@ The dataset includes storefront inventory data for 2022 and 2023 from the City o
      - Renamed columns to maintain consistency across both years.
      - Modified data types to ensure accuracy and consistency.
      - Created a "Store Age" column to calculate the age of each store based on the listing year.
+    
+![](images/9.png)
+![](images/10.png)
 
 6. **Data Pipeline Implementation**
    - Build and run an ETL pipeline using AWS Glue:
@@ -58,20 +71,32 @@ The dataset includes storefront inventory data for 2022 and 2023 from the City o
      - Aggregated the total number of storefronts for each year, ensuring consistency in naming conventions.
      - Unified the datasets into a single file for further analysis, stored in the Curated folder on AWS S3.
 
+![](images/11.png)
+![](images/12.png)
+![](images/13.png)
+
 7. **Data Analysis**
    - Set up a database and table in AWS Athena to analyze the cleaned data:
      - Queried the data to calculate the total number of storefronts for each year.
      - Named the database "financeandeconomy_storefrontsinventory_database_adarsh" and table "financeandeconomy_storefrontsinventory_table1_adarshdhatwalia".
+
+![](images/14.png)
 
 8. **Data Visualization**
    ![Storefront Trends](images/storefront_trends.png)
    - Generate a report using SQL queries and download the data in CSV format.
    - Created a bar graph using data from 2022 and 2023 to visualize trends in the number of stores. (Using Excel)
 
+![](images/15.png)
+
 9. **Data Publishing**
    - Use Amazon EC2 to deploy two servers (General and Web servers):
      - Transferred the CSV and PDF files to the General Server using Remote Desktop.
      - Installed and deployed IIS (Internet Information Services) on the Web Server to publish the data and allow access through the server's IP address.
+
+![](images/16.png)
+![](images/17.png)
+![](images/18.png)
 
 10. **Storefronts Segmentation**
     - Segment storefronts by year of opening (2022 vs. 2023).
