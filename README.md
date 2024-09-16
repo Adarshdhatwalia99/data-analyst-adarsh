@@ -22,7 +22,7 @@ The dataset includes storefront inventory data for 2022 and 2023 from the City o
 - geo_point_2d: The latitude and longitude coordinates of the property.
 
 #### Pipeline
-![Pipeline](images/1.png)
+(images/1.png)
 
 ### Methodology
 
