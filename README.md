@@ -32,7 +32,7 @@ The dataset includes storefront inventory data for 2022 and 2023 from the City o
    - Identify patterns in the dataset by analyzing the yearly changes in the number of storefronts and business categories.
 
 2. **Data Storage Design**
-   ![Data Storage Design](images/data_storage_design.png)
+   ![Data Storage Design](https://myoctocat.com/assets/images/base-octocat.svg)
    - Use AWS S3 to design a structured storage system:
      - Created a bucket called "Finance and Economy" with subfolders "2022" and "2023" for easy data handling.
      - Each subfolder was divided into "Landing," "Raw," and "Curated" stages to organize the data by processing phase.
