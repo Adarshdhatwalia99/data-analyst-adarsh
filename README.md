@@ -22,7 +22,7 @@ The dataset includes storefront inventory data for 2022 and 2023 from the City o
 - geo_point_2d: The latitude and longitude coordinates of the property.
 
 #### Pipeline
-[Insert pipeline image here]
+![Pipeline](images/pipeline.png)
 
 ### Methodology
 
@@ -32,6 +32,7 @@ The dataset includes storefront inventory data for 2022 and 2023 from the City o
    - Identify patterns in the dataset by analyzing the yearly changes in the number of storefronts and business categories.
 
 2. **Data Storage Design**
+   ![Data Storage Design](images/data_storage_design.png)
    - Use AWS S3 to design a structured storage system:
      - Created a bucket called "Finance and Economy" with subfolders "2022" and "2023" for easy data handling.
      - Each subfolder was divided into "Landing," "Raw," and "Curated" stages to organize the data by processing phase.
@@ -63,6 +64,7 @@ The dataset includes storefront inventory data for 2022 and 2023 from the City o
      - Named the database "financeandeconomy_storefrontsinventory_database_adarsh" and table "financeandeconomy_storefrontsinventory_table1_adarshdhatwalia".
 
 8. **Data Visualization**
+   ![Storefront Trends](images/storefront_trends.png)
    - Generate a report using SQL queries and download the data in CSV format.
    - Created a bar graph using data from 2022 and 2023 to visualize trends in the number of stores. (Using Excel)
 
