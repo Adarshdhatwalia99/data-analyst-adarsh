@@ -156,7 +156,7 @@ The project will focus on the following key areas:
 - Training: Educate staff on data quality and security practices.
 
 #### Pipeline
-![Data Quality Control Pipeline](images/19.png)
+![Data Quality Control Pipeline](images/19.jpg)
 *Figure 1: Data Quality Control Pipeline*
 
 ### Methodology
