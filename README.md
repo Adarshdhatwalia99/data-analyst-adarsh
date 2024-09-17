@@ -133,6 +133,15 @@ This descriptive analysis project aims to provide a comprehensive understanding 
 
 
 
+
+
+
+
+
+
+
+
+
 # Data Quality Control
 
 ## Project Description: Data Quality Control Initiative at Vancouver Storefront Inventory Project
@@ -236,6 +245,14 @@ The project will focus on the following key areas:
 - Estimated completion: 8 weeks, encompassing data profiling, cleansing, validation setup, training, and real-time monitoring implementation.
 
 This Data Quality Control initiative will empower the City of Vancouver to maintain high standards of data integrity and reliability, enhancing decision-making for urban planning and retail sector management.
+
+
+
+
+
+
+
+
 
 
 
@@ -377,6 +394,19 @@ The dataset includes UCW student academic data for the year 2023, containing the
 - Access to reports via an EC2 web server and general server.
 
 This project successfully provided a comprehensive understanding of academic performance rates at UCW, enabling stakeholders to make informed decisions to enhance student success.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
