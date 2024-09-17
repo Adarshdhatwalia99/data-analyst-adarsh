@@ -131,113 +131,359 @@ This descriptive analysis project aims to provide a comprehensive understanding 
 
 
 
-# DAP Design and Implementation
 
-## Step 1: Data Analytical Question Formulation
 
-To properly analyze the storefront inventory data, I developed a set of data analytical questions divided into descriptive, diagnostic, predictive, and prescriptive categories. Each question is intended to provide insight into various facets of the City of Vancouver's storefront inventory.
+# Data Quality Control
 
-- **Descriptive Metric (Total Number of Stores Each Year)**: Provides insight into retail trends, determining if stores are increasing, decreasing, or remaining stable.
-- **Diagnostic Metric (Distribution of Retail Categories)**: Investigates factors influencing the number of storefronts over time, such as economic conditions and regulatory changes.
-- **Predictive Metric (Trends in New Business Openings)**: Estimates future patterns in storefront vacancies and openings using historical data.
-- **Prescriptive Metric (Geographic Analysis of Business Density)**: Aims to provide actionable strategies for reducing storefront vacancies and encouraging new business openings.
+## Project Description: Data Quality Control Initiative at Vancouver Storefront Inventory Project
 
-![DAQ Formulation](images/daq_formulation.png)
-*Figure 1: DAQ Formulation*
+### Project Title: Implementation of Data Quality Control Measures for Vancouver Storefront Data
 
-## Step 2: Data Discovery
+#### Objective
+The primary objective of this project is to establish a comprehensive Data Quality Control (DQC) framework for the City of Vancouver Storefront Inventory project. This framework will ensure the accuracy, completeness, and reliability of the data, supporting enhanced decision-making processes for retail planning and urban policy development.
 
-I accessed and downloaded the storefront inventory dataset for 2022 and 2023 from Vancouver's Open Data Portal. The "Year recorded" parameter was used to identify essential patterns in storefront inventory.
+#### Background
+As Vancouver's retail sector continues to evolve, the volume and complexity of storefront inventory data have increased, bringing challenges related to data quality such as inconsistencies, duplicate records, sensitive data and incomplete entries. Inaccurate data can lead to incorrect predictions, misguided policy recommendations, and inefficiencies. This project aims to implement robust data quality control measures to mitigate these risks, ensuring high-quality data is used in all analyses.
 
-![Storefronts-Inventory City of Vancouver](images/storefronts_inventory.png)
-*Figure 2: Storefronts-Inventory City of Vancouver*
+#### Scope
+The project will focus on the following key areas:
 
-## Step 3: Data Storage Design
+- Data Profiling: Assess data quality with AWS DataBrew.
+- Data Cleansing: Correct, deduplicate, and standardize data using AWS Glue.
+- Data Protections: Apply Amazon KMS encryption for data protection.
+- Data Governance: Apply AWS Glue governance rules for quality control.
+- Monitoring: Use AWS CloudWatch for real-time monitoring and reporting.
+- Training: Educate staff on data quality and security practices.
 
-I structured our AWS S3 storage as follows:
-- Main bucket: "Finance and Economy"
-  - Folder: "Storefronts Inventory"
-    - Subfolders: "2022" and "2023"
-      - Each subfolder contains: "Landing," "Raw," and "Curated"
+#### Pipeline
+![Data Quality Control Pipeline](images/19.png)
+*Figure 1: Data Quality Control Pipeline*
 
-![Amazon S3 Design](images/amazon_s3_design.png)
-*Figure 3: Amazon S3 Design*
+### Methodology
 
-## Step 4: Dataset Preparation
+1. **Current State Assessment**
+   - Conduct a comprehensive analysis of the existing storefront datasets (2022 and 2023) to identify key data quality challenges, including inconsistencies, duplicate records, and incomplete data entries.
+   - Identify critical datasets and processes that significantly influence the City of Vancouver's decision-making related to storefront inventory.
 
-The dataset was reduced to 188 entries each for 2022 and 2023 to focus on the most essential data.
+   ![Current State Assessment](images/20.png)
+   ![](images/21.png)
+   *Figure 2: Current State Assessment*
 
-![Dataset for 2022 and 2023](images/dataset_2022_2023.png)
-*Figure 4: Dataset for 2022 and 2023*
+2. **Data Cleansing Processes**
+   - Develop and implement procedures for data cleansing, which may include:
+     - Remove duplicates, correct errors, and standardize data formats.
+     - Rename columns and create a new "store_age" column.
+     - Store cleaned data in the raw folder of the S3 bucket.
 
-## Step 5 & 6: Data Ingestion & Storage
+   ![Data Cleansing Processes](images/22.png)
+   ![](images/23.png)
+   *Figure 3: Data Cleansing Processes*
 
-CSV files for 2022 and 2023 were uploaded to their respective "Landing" folders within the AWS S3 structure.
+3. **Data Governance Procedures**
+   - Use AWS Glue to process 2022 and 2023 datasets, extracting, transforming, and loading data.
+   - Apply rules to check for completeness, consistency, accuracy, and sensitive data issues.
+   - Validated data is moved to the "Trusted" folder for further analysis.
+   - Automate weekly data quality checks in workflow (AWS Glue) to ensure ongoing data integrity.
 
-![Data Ingestion and Storage for 2022 & 2023](images/data_ingestion_storage.png)
-*Figure 5: Data Ingestion and Storage for 2022 & 2023*
+   ![Data Governance Procedures](images/24.png)
+   ![](images/25.png)
+   ![](images/26.png)
+   ![](images/27.png)
+   ![](images/28.png)
+   ![](images/29.png)
+   *Figure 4: Data Governance Procedures*
 
-## Step 7: Data Pipeline Design
+5. **Data Protection**
+   - Use AWS Key Management Service (KMS) to generate encryption keys for securely safeguarding all datasets.
+   - Ensure that all data stored in AWS S3 is encrypted and backed up with replication rules in place to maintain redundancy across multiple storage locations.
 
-An ETL pipeline was designed using Draw.io to visualize the process of combining and organizing the 2022 and 2023 datasets.
+   ![Data Protection](images/30.png)
+   ![](images/31.png)
+   ![](images/32.png)
+   *Figure 5: Data Protection*
 
-![Draw.io Diagram](images/drawio_diagram.png)
-*Figure 6: Draw.io Diagram*
+6. **Monitoring and Reporting**
+   - Implement real-time monitoring using AWS CloudWatch to track essential performance indicators, such as system performance, data storage, estimated charges and alarms.
+   - Set up CloudWatch alarms to trigger email notifications when costs exceed predefined thresholds.
 
-## Step 8 & 9: Data Cleaning & Structuring
+   ![Monitoring and Reporting](images/33.png)
+   *Figure 6: Monitoring and Reporting*
 
-AWS DataBrew was used to clean and structure the datasets:
-- Removed errors, duplicates, and anomalies
-- Renamed columns for consistency
-- Modified data types
-- Created a new "Store Age" column
+7. **Training and Best Practices**
+   - Develop comprehensive training materials and conduct workshops to educate team members on best practices for maintaining data quality.
+   - Ensure staff is trained on data protection protocols, including the proper use of AWS KMS for encryption and AWS IAM for access control, so everyone understands their role in upholding data integrity.
 
-![Data cleaning of 2022 and 2023 datasets](images/data_cleaning.png)
-*Figure 7: Data cleaning of 2022 and 2023 datasets*
+8. **Feedback Mechanism**
+   - Establish a continuous feedback loop to evaluate and improve data quality processes based on input from users and stakeholders.
+   - Use this feedback to refine and strengthen the governance, monitoring, and data protection measures to ensure ongoing optimization of data governance.
 
-![Data structuring of 2022 and 2023 datasets](images/data_structuring.png)
-*Figure 8: Data structuring of 2022 and 2023 datasets*
+### Tools and Technologies
+- AWS DataBrew for data profiling and cleansing.
+- Amazon Glue for data governance rules and the ETL pipeline.
+- CloudWatch: Monitors key metrics and sets alarms for system performance and potential issues.
+- Amazon S3 for data storage and replications
+- Amazon KMS for key creation and encryption.
 
-## Step 10: Data Pipeline Implementation
+### Deliverables
+- Develop a comprehensive Data Quality Control Plan detailing processes, metrics, and roles.
+- Document data quality metrics and KPIs with periodic performance updates.
+- Set up encryption with AWS KMS and store data in an encrypted S3 bucket.
+- Prepare cleaned and validated datasets for 2022 and 2023, ready for analysis.
+- Provide training resources, workshops, and best practice documentation for city staff.
+- Create real-time monitoring dashboards showing data quality trends and alerts.
 
-AWS Glue was used to implement the ETL pipeline:
-- Removed unnecessary columns
-- Standardized schema
-- Aggregated data to determine total number of stores by Year Listed
-- Unified datasets into a single dataset
+### Timeline
+- Estimated completion: 8 weeks, encompassing data profiling, cleansing, validation setup, training, and real-time monitoring implementation.
 
-![ETL pipeline in AWS Glue](images/etl_pipeline.png)
-*Figure 9: ETL pipeline in AWS Glue*
+This Data Quality Control initiative will empower the City of Vancouver to maintain high standards of data integrity and reliability, enhancing decision-making for urban planning and retail sector management.
 
-## Step 11: Data Analysis
 
-AWS Athena was used to set up a database and table for analyzing the data:
-- Database name: "financeandeconomy_storefrontsinventory_database_adarsh"
-- Table name: "financeandeconomy_storefrontsinventory_table1_adarshdhatwalia"
 
-![Data Analysis in AWS Athena](images/data_analysis_athena.png)
-*Figure 10: Data Analysis in AWS Athena*
 
-## Step 12: Data Visualization
 
-SQL query results were downloaded in CSV format and used to create a bar graph in Excel.
 
-![Data Visualization in Excel](images/data_visualization_excel.png)
-*Figure 11: Data Visualization in Excel*
+# Academic Performance Analysis
 
-## Step 13: Data Publishing
+## Project Description: Evaluating UCW Student Performance Rates to Enhance Success
 
-Amazon EC2 was used to launch two server instances (General and Web servers) for data publishing:
-- General Server: Used for file transfer via Microsoft Remote Desktop
-- Web Server: Deployed IIS (Internet Information Services) for hosting the reports
+### Project Title: Academic Performance Rates of Students at UCW
 
-![Data Publishing in General and Web Server](images/data_publishing_servers.png)
-*Figure 12: Data Publishing in General and Web Server*
+#### Objective
+The primary objective of this project is to calculate and analyze the Academic Performance Rate (APR) across various terms at UCW. By evaluating the APR, this analysis aims to identify student performance patterns and derive actionable insights to improve academic standing and success.
 
-## Conclusion
+#### Dataset
+The dataset includes UCW student academic data for the year 2023, containing the following key features:
 
-The AWS data analytical platform created for the City of Vancouver successfully met the crucial requirements of data migration and extensive analytics. The project optimized the entire process using AWS Glue, Athena, and other cloud capabilities, resulting in a robust infrastructure for Vancouver's current and future data needs.
+- **StudentID**: Unique identifier for each student.
+- **Term**: Academic term (e.g., Fall 2023, Spring 2023).
+- **CourseID**: Unique identifier for courses.
+- **CourseName**: Name of the course.
+- **Credits**: Number of credits assigned to each course.
+- **Grade**: Performance grade of the student for the course.
+- **CGPA**: Cumulative grade point average of the student.
+- **TermGPA**: GPA for the specific term.
+- **Instructor**: Name of the course instructor.
+- **Department**: Department offering the course.
 
-This platform enhances the city's data management capabilities and paves the way for more advanced data-driven projects. The insights gained enable city officials to make better decisions about improving public services, managing economic growth, and addressing environmental concerns.
+#### Pipeline
+![Academic Performance Pipeline](images/a.png)
+![](images/b.png)
 
-Overall, this project has set a new standard for municipal data management, ensuring that the City of Vancouver is well-prepared to face future challenges with data-driven strategies.
+*Figure 1: Academic Performance Pipeline*
+
+### Methodology
+
+1. **Data Collection and Discovery**
+   - Two test datasets (student grades and students with CGPA above 3) were generated and uploaded to an S3 bucket.
+   - MS Excel was used to structure and retrieve relevant data, ensuring that only essential fields were included.
+
+
+
+
+2. **Data Storage Design**
+   - AWS S3 was used to design a structured storage system:
+     - Created a bucket called "Finance and Economy" with subfolders "2022" and "2023" for organized data handling.
+     - Each subfolder was divided into "Landing," "Raw," and "Curated" stages to structure the data by processing phase.
+
+   ![Data Storage Design](images/c.png)
+   *Figure 3: Data Storage Design*
+
+3. **Data Ingestion & Storage**
+   - Created an S3 bucket for structured data storage under the **Academic Standing** category.
+   - Organized the bucket into the path: `academicstanding/2023/landing/`.
+   - Stored two datasets in the following structure:
+     - `student_grades` (for student grades data).
+     - `studentcgpaabove3` (for students with CGPA above 3).
+
+   ![Data Ingestion and Storage](images/d.png)
+   *Figure 4: Data Ingestion and Storage*
+
+4. **Data Cleaning & Structuring**
+   - Used AWS DataBrew to clean and structure the dataset:
+     - Applied schema rules to ensure consistent data types across the dataset.
+     - Renamed columns for clarity and consistency (e.g., Credits to CourseCredits).
+     - Identified and handled missing values and anomalies using DataBrew's data profiling options to ensure data quality.
+     - The cleaned dataset was stored in the **Raw** folder within the S3 bucket under `academicstanding/2023/raw`.
+
+   ![Data Cleaning and Structuring](images/e.png)
+   *Figure 5: Data Cleaning and Structuring*
+
+5. **Data Pipeline Implementation**
+   - Built a pipeline in AWS Glue to filter, aggregate, and calculate the APR for each term:
+     - **Extract Data**: Pulled data from S3, including student grades and CGPA records for each term.
+     - **Filter Rows**: Applied filters to include only relevant rows, such as students enrolled in each specific term and their corresponding grades.
+     - **Remove Unnecessary Columns**: Dropped irrelevant columns, keeping only student ID, term, grades, and CGPA.
+     - **Group by Student ID and Term**: Grouped the dataset by student ID and term to calculate performance metrics.
+     - **Calculate APR**: Created a derived column for APR by calculating the ratio of students who met the academic success criteria in each term.
+     - **Validate Data**: Ran validation checks to ensure calculated APR values were consistent and accurate.
+     - **Export Data**: Saved the transformed data into the **Curated** folder in S3, ready for analysis and visualization.
+
+   ![Data Pipeline Implementation](images/f.png)
+   *Figure 6: Data Pipeline Implementation*
+
+6. **Data Analysis**
+   - AWS Athena was used to query the academic performance data and calculate APR per semester.
+   - Retrieved APR values for each term:
+     - Spring 2023: 53.33
+     - Fall 2023: 68.75
+     - Winter 2023: 57.14
+
+   ![Data Analysis](images/g.png)
+   *Figure 7: Data Analysis*
+
+7. **Data Visualization**
+   - Exported query results from Athena and used Excel to create a bar plot visualizing APR trends for each term.
+   - The bar chart highlighted performance rates across terms, with Fall 2023 showing the highest APR.
+
+   ![Data Visualization](images/h.png)
+   *Figure 8: Data Visualization*
+
+8. **Data Publishing**
+   - Created two EC2 servers (General and Web) using Amazon EC2.
+   - Uploaded key data files to the General Server and published the Graph_Report on the Web Server.
+   - Installed and deployed IIS (Internet Information Services) on the Web Server to host and share the report.
+
+   ![Data Publishing](images/i.png)
+   ![](images/j.png)
+   ![](images/k.png)
+   *Figure 9: Data Publishing*
+
+9. **Academic Performance Segmentation**
+   - Segmented academic performance by term (Spring 2023, Fall 2023, Winter 2023).
+   - Analyzed the APR changes across these terms.
+
+10. **Insights and Findings**
+   - Summarized key insights from the analysis:
+     - Identified performance trends, with Fall 2023 showing the highest APR and Spring 2023 the lowest.
+     - Investigated potential reasons for the variations, including course difficulty, student engagement, and instructional factors.
+
+11. **Recommendations**
+   - Implement academic alerts for early intervention and targeted support for struggling students.
+   - Enhance student resources, including tutoring and workshops, during underperforming terms.
+   - Develop personalized retention programs to improve student performance.
+
+### Tools and Technologies
+- AWS S3 for data storage and management.
+- AWS DataBrew for data cleaning and transformation.
+- AWS Glue for creating and running data pipelines.
+- AWS Athena for querying and analyzing data.
+- Amazon EC2 for deploying servers and hosting data.
+- Excel for creating visualizations of APR trends.
+- Draw.io for visualizing the ETL pipeline.
+
+### Deliverables
+- A detailed report summarizing the methodology, findings, and APR analysis.
+- Bar chart visualizations of APR across terms.
+- Access to reports via an EC2 web server and general server.
+
+This project successfully provided a comprehensive understanding of academic performance rates at UCW, enabling stakeholders to make informed decisions to enhance student success.
+
+
+
+
+
+
+
+# Data Quality Control
+
+## Project Description: Data Quality Control Initiative for Academic Performance Dataset at UCW
+
+### Project Title: Implementation of Data Quality Control Measures for UCW Academic Performance
+
+#### Objective
+The primary objective of this project is to establish a comprehensive Data Quality Control (DQC) framework for the UCW Academic Performance Dataset. This framework will ensure the accuracy, privacy, governance, and data integrity necessary for enhanced decision-making in tracking student performance and supporting academic success at UCW.
+
+#### Background
+As UCW expands its student base and academic offerings, the volume and complexity of academic data have grown, introducing challenges such as inconsistencies, duplicate records, sensitive data, and incomplete entries. Inaccurate data can lead to incorrect assessments, misguided policy recommendations, and inefficiencies in managing academic progress. This project aims to implement robust data quality control measures to mitigate these risks, ensuring high-quality data is used in all academic assessments and reporting.
+
+#### Scope
+The project will focus on the following key areas:
+
+- **Data Cleansing**: Correct, deduplicate, and standardize data using AWS Glue.
+- **Data Protection**: Apply Amazon KMS encryption for data protection.
+- **Data Governance**: Apply AWS Glue governance rules for quality control.
+- **Monitoring**: Use AWS CloudWatch for real-time monitoring and reporting.
+- **Training**: Educate staff on data quality and security practices.
+
+#### Pipeline
+![Data Quality Control Pipeline](images/l.png)
+*Figure 1: Data Quality Control Pipeline*
+
+### Methodology
+
+1. **Current State Assessment**
+   - Analyze the academic performance datasets to identify inconsistencies, duplicates, and incomplete entries.
+   - Highlight key datasets critical for decision-making and academic evaluations at UCW.
+
+   ![Current State Assessment](images/m.png)
+   *Figure 2: Current State Assessment*
+
+2. **Data Cleansing Processes**
+   - Use AWS Glue DataBrew to remove duplicates, correct errors, and standardize data formats.
+   - Apply built-in transformations to handle missing and invalid values without requiring coding.
+   - Additional steps include renaming columns (e.g., "Credits" to "CourseCredits") and creating new fields if necessary.
+   - Cleaned data will be securely stored in the **Raw** folder of the S3 bucket for further processing.
+
+   ![Data Cleansing Processes](images/n.png)
+   *Figure 3: Data Cleansing Processes*
+
+3. **Data Governance Procedures**
+   - Load data from the **Raw** folder in S3 using AWS Glue for ETL processing.
+   - Detect sensitive data to ensure compliance with data privacy regulations.
+   - Evaluate data quality by applying validation rules for completeness, accuracy, and consistency.
+   - Use a conditional router to separate passed data from data needing review.
+   - Store passed data in the **Trusted** folder for secure access.
+   - Create a scheduled workflow to run weekly checks and revalidate data.
+
+   ![Data Governance Procedures](images/o.png)
+   ![](images/p.png)
+   ![](images/q.png)
+   *Figure 4: Data Governance Procedures*
+
+4. **Data Protection**
+   - Encrypt all data using AWS KMS to secure sensitive information and ensure compliance with UCW's data security policies.
+   - Implement S3 replication policies to regularly back up data across multiple locations for redundancy.
+
+   ![Data Protection](images/r.png)
+   ![](images/s.png)
+   *Figure 5: Data Protection*
+
+5. **Monitoring and Reporting**
+   - Use AWS CloudWatch for real-time monitoring of system performance, data storage usage, and alerts related to data quality.
+   - CloudWatch alarms will notify teams via email if specific thresholds, such as storage costs or data integrity issues, are breached.
+   - AWS CloudTrail will create logs to monitor access and system activities, ensuring transparency and accountability for all data operations.
+
+   ![Monitoring and Reporting](images/t.png)
+   ![](images/u.png)
+   *Figure 6: Monitoring and Reporting*
+
+7. **Training and Best Practices**
+   - Develop comprehensive training materials and conduct workshops for UCW staff, ensuring they are well-versed in data protection protocols.
+   - Training will focus on maintaining data integrity, recognizing potential issues, and utilizing AWS tools for managing academic data.
+
+   ![Training and Best Practices](images/training_ucw.png)
+   *Figure 7: Training and Best Practices*
+
+8. **Feedback Mechanism**
+   - Create a continuous feedback loop where UCW staff can provide input on data quality issues or process improvements.
+   - Incorporate feedback into the system's governance and protection protocols, continually optimizing data governance measures at UCW.
+
+### Tools and Technologies
+- **AWS DataBrew**: For data profiling and cleansing to maintain clean, structured data.
+- **Amazon Glue**: Governs data rules and manages the ETL pipeline.
+- **Amazon S3**: Stores and replicates data for redundancy and reliability.
+- **Amazon KMS**: Manages key creation and encryption for data security.
+- **CloudTrail**: Tracks logs and account activity for monitoring changes and ensuring accountability.
+- **CloudWatch**: Monitors key metrics and sets alarms for system performance and potential issues.
+
+### Deliverables
+- A comprehensive Data Quality Control Plan detailing processes, metrics, and staff roles.
+- Encryption and secure storage of UCW’s academic data using AWS KMS and S3.
+- Cleaned and validated academic datasets ready for analysis and reporting.
+- Training materials and workshops for UCW staff on data protection protocols.
+- Real-time monitoring dashboards to visualize data quality trends and receive alerts.
+
+### Timeline
+- Estimated completion: 10 weeks, including data cleansing, data governance, privacy, training, and real-time monitoring implementation.
+
+This Data Quality Control initiative will empower UCW to uphold high standards of data integrity, improve the accuracy of academic evaluations, and ensure better decision-making processes in student performance tracking.
