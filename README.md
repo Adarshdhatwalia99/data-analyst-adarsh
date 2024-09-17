@@ -457,14 +457,12 @@ The project will focus on the following key areas:
    ![](images/u.png)
    *Figure 6: Monitoring and Reporting*
 
-7. **Training and Best Practices**
+6. **Training and Best Practices**
    - Develop comprehensive training materials and conduct workshops for UCW staff, ensuring they are well-versed in data protection protocols.
    - Training will focus on maintaining data integrity, recognizing potential issues, and utilizing AWS tools for managing academic data.
 
-   ![Training and Best Practices](images/training_ucw.png)
-   *Figure 7: Training and Best Practices*
 
-8. **Feedback Mechanism**
+7. **Feedback Mechanism**
    - Create a continuous feedback loop where UCW staff can provide input on data quality issues or process improvements.
    - Incorporate feedback into the system's governance and protection protocols, continually optimizing data governance measures at UCW.
 
